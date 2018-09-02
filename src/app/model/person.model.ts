@@ -1,11 +1,11 @@
 import { Organization } from './organization.model';
 import { House } from './house.model';
 import { removeFromArray } from '../function/remove-from-array';
-import { Subjectable } from '../standalone/subjectable.standalone';
-import { OneToOne } from '../standalone/relation/one-to-one.standalone';
+import { Subjectable } from '../standalone/subjectable/subjectable.standalone';
+import { OneToOne } from '../standalone/relation/one-to-one';
 import { Car } from './car.model';
-import { ManyToOne } from '../standalone/relation/many-to-one.standalone';
-import { ManyToMany } from '../standalone/relation/many-to-many.standalone';
+import { ManyToOne } from '../standalone/relation/many-to-one';
+import { ManyToMany } from '../standalone/relation/many-to-many';
 
 
 export class Person {

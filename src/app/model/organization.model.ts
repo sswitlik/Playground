@@ -1,5 +1,5 @@
 import { Person } from './person.model';
-import { OneToMany } from '../standalone/relation/one-to-many.standalone';
+import { OneToMany } from '../standalone/relation/one-to-many';
 
 export class Organization {
 

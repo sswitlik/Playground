@@ -1,5 +1,5 @@
-import { OneToMany } from './one-to-many.standalone';
-import { ManyToOne } from './many-to-one.standalone';
+import { OneToMany } from './one-to-many';
+import { ManyToOne } from './many-to-one';
 import * as _ from 'lodash';
 
 class One {

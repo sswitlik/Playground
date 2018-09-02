@@ -1,5 +1,5 @@
 import { Person } from './person.model';
-import { OneToOne } from '../standalone/relation/one-to-one.standalone';
+import { OneToOne } from '../standalone/relation/one-to-one';
 
 export class Car {
   get owner(): Person {

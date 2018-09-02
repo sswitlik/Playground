@@ -1,4 +1,4 @@
-import { OneToOne } from './one-to-one.standalone';
+import { OneToOne } from './one-to-one';
 
 class A {
   b: B;

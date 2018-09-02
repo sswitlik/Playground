@@ -1,5 +1,5 @@
 import { Person } from './person.model';
-import { ManyToMany } from '../standalone/relation/many-to-many.standalone';
+import { ManyToMany } from '../standalone/relation/many-to-many';
 import { removeFromArray } from '../function/remove-from-array';
 
 export class House {

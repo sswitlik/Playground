@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import { ManyToMany } from './many-to-many.standalone';
+import { ManyToMany } from './many-to-many';
 
 class A {
   b: B[] = [];
