@@ -1,6 +1,8 @@
-import { OneMethods } from './interfaces/one-methods.interface';
+interface ManyToOneMethods<U> {
+  set: (relative: U) => void;
+}
 
-export class OneToOne<T, U> {
+export class ManyToOne<T, U> {
 
   private readonly oppositeRelationKey: string;
 
@@ -8,9 +10,9 @@ export class OneToOne<T, U> {
 
   private readonly owner: T;
 
-  private methods: OneMethods<U>;
+  private methods: ManyToOneMethods<U>;
 
-  constructor(owner: T, ownerValueKey: string, oppositeRelationKey: string, methods: OneMethods<U>) {
+  constructor(owner: T, ownerValueKey: string, oppositeRelationKey: string, methods: ManyToOneMethods<U>) {
     this.owner = owner;
     this.ownerValueKey = ownerValueKey;
     this.oppositeRelationKey = oppositeRelationKey;
@@ -18,12 +20,12 @@ export class OneToOne<T, U> {
   }
 
   set(relative: U) {
-    console.log(this);
+    console.log(this, relative);
     if (this.owner[this.ownerValueKey]) {
-      this.owner[this.ownerValueKey][this.oppositeRelationKey].setUnrelated(null);
+      this.owner[this.ownerValueKey][this.oppositeRelationKey].eraseUnrelated(this.owner);
     }
     if (relative) {
-      relative[this.oppositeRelationKey].setUnrelated(this.owner);
+      relative[this.oppositeRelationKey].addUnrelated(this.owner);
     }
     this.setUnrelated(relative);
   }

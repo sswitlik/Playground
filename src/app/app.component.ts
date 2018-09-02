@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from './model/person.model';
 import { House } from './model/house.model';
-import { Car } from './model/car.model';
 
 
 @Component({
@@ -11,18 +10,18 @@ import { Car } from './model/car.model';
 })
 export class AppComponent implements OnInit {
 
-  title = '';
-
   ngOnInit() {
-    // console.log(House);
-    // console.log(Person);
   }
 
   newPerson() {
-    const p = new Person('p');
-    const c = new Car();
-    p.car.set(c);
-    console.log(p);
+    const persons: Person[] = [];
+    const houses: House[] = [];
+    for (let i = 0; i < 10; i++) {
+      persons.push(new Person(`p${i}`));
+      houses.push(new House(`h${i}`));
+    }
+    console.log(persons);
+    console.log(houses);
   }
 
   newHouse() {
