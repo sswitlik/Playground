@@ -5,7 +5,7 @@ class One {
   b: Many[] = [];
 
   constructor(metods: any) {
-    this.bRelation = new OneToMany<One, Many>(this, 'aRelation', metods);
+    this.bRelation = new OneToMany<One, Many>(this, 'b', 'aRelation', metods);
   }
 
   bRelation: OneToMany<One, Many>;

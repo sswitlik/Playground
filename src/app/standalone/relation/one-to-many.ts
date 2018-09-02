@@ -1,38 +1,16 @@
-import { ManyMethods } from './interfaces/many-methods.inteface';
+import { ToMany } from './base/to-many';
 
-export class OneToMany<T, U> {
+export class OneToMany<T, U> extends ToMany<T, U> {
 
-  private readonly oppositeRelationKey: string;
-
-  private readonly owner: T;
-
-  private methods: ManyMethods<U>;
-
-  constructor(owner: T, oppositeRelationKey: string, methods: ManyMethods<U>) {
-    this.owner = owner;
-    this.oppositeRelationKey = oppositeRelationKey;
-    this.methods = methods;
-  }
-
-  add(relative: U) {
+  oppositeOnAdd(owner: T, relative: U) {
     if (relative) {
       relative[this.oppositeRelationKey].setUnrelated(this.owner);
     }
-    this.addUnrelated(relative);
   }
 
-  erase(relative: U) {
+  oppositeOnErase(owner: T, relative: U) {
     if (relative) {
       relative[this.oppositeRelationKey].setUnrelated(null);
     }
-    this.eraseUnrelated(relative);
-  }
-
-  private addUnrelated(relative: U) {
-    this.methods.add(relative);
-  }
-
-  private eraseUnrelated(relative: U) {
-    this.methods.erase(relative);
   }
 }
