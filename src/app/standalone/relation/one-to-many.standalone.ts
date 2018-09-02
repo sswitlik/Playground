@@ -18,7 +18,6 @@ export class OneToMany<T, U> {
     if (relative) {
       relative[this.oppositeRelationKey].setUnrelated(this.owner);
     }
-    console.log(this);
     this.addUnrelated(relative);
   }
 
