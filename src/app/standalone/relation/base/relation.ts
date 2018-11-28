@@ -1,5 +1,3 @@
-import { ManyMethods } from '../interfaces/many-methods.inteface';
-
 export abstract class Relation<T, U> {
 
   protected readonly oppositeRelationKey: string;
@@ -8,9 +6,9 @@ export abstract class Relation<T, U> {
 
   protected readonly owner: T;
 
-  protected methods: ManyMethods<U>;
+  protected methods: any;
 
-  constructor(owner: T, ownerValueKey: string, oppositeRelationKey: string, methods: ManyMethods<U>) {
+  constructor(owner: T, ownerValueKey: string, oppositeRelationKey: string, methods: any) {
     this.owner = owner;
     this.ownerValueKey = ownerValueKey;
     this.oppositeRelationKey = oppositeRelationKey;

@@ -1,0 +1,95 @@
+<div class="action-form-body">
+
+    <div class="action-form-panel ui-fluid">
+
+        <h1>{{header | translate}}</h1>
+
+        <div class="ui-g action-form-formular-container">
+            <form [formGroup]="formModel"
+                *ngIf="formModel"
+                class="ui-g-12 ui-g-nopad action-form-formular">
+
+                <div class="ui-g"
+                    *ngFor="let field of fields">
+
+                    <div class="ui-g-4 action-form-label"
+                        [style.display]="field.label ? 'block' : 'none'">
+                        {{field.label | translate}}
+                    </div>
+                    <div class="action-form-input-container"
+                        [ngClass]="{'ui-g-8': field.label, 'ui-g-12': !field.label}">
+                        <ng-container *ngTemplateOutlet="inputType; context: {$implicit: field, formGroup: formModel}"></ng-container>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+        <div class="ui-g action-form-button-container">
+            <div *ngFor="let action of actions"
+                class="action-form-single-button">
+                <kp-action-button [action]="action"
+                    [record]="formModel"></kp-action-button>
+            </div>
+
+        </div>
+        <div>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>
+
+<ng-template #inputType
+    let-field
+    let-formGroup="formGroup">
+    <ng-container [formGroup]="formGroup"
+        [ngSwitch]="field.type">
+
+        <ng-container *ngSwitchCase="ActionFormFieldType.INPUT">
+            <input pInputText
+                (keydown.enter)="field.keydownEnter && field.keydownEnter(formGroup)"
+                placeholder="{{field.placeholder | translate}}"
+                [formControlName]="field.field">
+        </ng-container>
+
+        <ng-container *ngSwitchCase="ActionFormFieldType.SPINNER">
+            <input pInputText
+                (keydown.enter)="field.keydownEnter && field.keydownEnter(formGroup)"
+                placeholder="{{field.placeholder | translate}}"
+                type="number"
+                [formControlName]="field.field">
+        </ng-container>
+
+        <ng-container *ngSwitchCase="ActionFormFieldType.PASSWORD">
+            <input pInputText
+                type="password"
+                (keydown.enter)="field.keydownEnter && field.keydownEnter(formGroup)"
+                placeholder="{{field.placeholder | translate}}"
+                [formControlName]="field.field" />
+        </ng-container>
+
+        <ng-container *ngSwitchCase="ActionFormFieldType.CALENDAR">
+            <p-calendar [formControlName]="field.field"
+                (keydown.enter)="field.keydownEnter && field.keydownEnter(formGroup)"
+                placeholder="{{field.placeholder | translate}}"></p-calendar>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="ActionFormFieldType.SELECT">
+            <p-dropdown (keydown.enter)="field.keydownEnter && field.keydownEnter(formGroup)"
+                [formControlName]="field.field"
+                placeholder="{{field.placeholder | translate}}"
+                [options]="field.options"
+                [optionLabel]="field.optionName"
+                [style]="{'min-width':'150px'}"></p-dropdown>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="ActionFormFieldType.TEXTAREA">
+            <textarea pInputTextarea
+                (keydown.enter)="field.keydownEnter && field.keydownEnter(formGroup)"
+                placeholder="{{field.placeholder | translate}}"
+                [formControlName]="field.field"></textarea>
+        </ng-container>
+
+    </ng-container>
+</ng-template>
