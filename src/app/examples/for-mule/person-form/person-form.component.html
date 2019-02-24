@@ -1,0 +1,44 @@
+<h3>
+  Person:
+</h3>
+
+<label (click)="click(form)">
+  {{form.value | json}}
+</label>
+{{form.valid}}
+
+<form [formGroup]="form">
+
+  <p>
+    name:
+    <input formControlName="name">
+  </p>
+
+  <p>
+    lastName:
+    <input formControlName="lastName">
+  </p>
+
+  <p>
+    Children:
+  </p>
+  <form formArrayName="children">
+    <div *ngFor="let child of form.controls.children.controls; let i = index">
+      <p>
+        {{i+1}}:
+      </p>
+      <form [formGroupName]="i">
+        <p>
+          name:
+          <input formControlName="name">
+        </p>
+
+        <p>
+          lastName:
+          <input formControlName="lastName">
+        </p>
+      </form>
+    </div>
+  </form>
+</form>
+

@@ -7,7 +7,7 @@ export class Organization {
 
   workers: Set<Person>;
 
-  private workersRelation = new OneToMany<Organization, Person>(this, 'organizationRelation', {
+  private workersRelation = new OneToMany<Organization, Person>(this, 'organizationRelation', null, {
     add: relative => {
       this.workers.add(relative);
       console.log(`${this.name} => ${relative.name} add`);

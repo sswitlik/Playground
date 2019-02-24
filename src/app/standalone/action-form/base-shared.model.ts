@@ -1,5 +1,4 @@
 import { v4 as uuid } from 'uuid';
-import { LayoutElementType } from '../../enums/layout-element-type.enum';
 
 // DTO
 export class BaseShared {
@@ -31,7 +30,7 @@ export class BaseShared {
 
     id: number;
 
-    frontType: LayoutElementType;
+    frontType: any; // LayoutElementType;
 
     constructor(source: Partial<BaseShared>) {
         this.localId = uuid();
@@ -47,4 +46,4 @@ export class BaseShared {
             this[prop] = source[prop];
         }
     }
-} 
+}
